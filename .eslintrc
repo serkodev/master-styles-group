@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "no-trailing-spaces": 1,
+    "indent": [1, 4, { "SwitchCase": 1 }],
+    "eol-last": ["warn", "always"]
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**"]
+}
