@@ -6,22 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>master-group</title>
+    <script type="module" src="./main.js"></script>
     <script type="module" src="../src/index.ts"></script>
 </head>
 
 <body>
+    <h1>master-group test</h1>
+    <div class="font:red@xm font:20@xm">foo</div>
+    <div class="{font:red;_font:20}@xm">foo</div>
+    <hr />
+
+    <button class="{font:20}@xm" onclick="increaseSize(this)">Update</button>
+    <hr />
+
     <template id="dummy">
-        <div class="font:red">foo</div>
+        <div class="{font:red;_font:20}@xm">foo</div>
     </template>
     <button onclick="appendDummy()">Add</button>
-    <script>
-        function appendDummy() {
-            var t = document.querySelector('#dummy');
-            var clone = t.content.cloneNode(true);
-            document.body.appendChild(clone);
-        }
-        appendDummy()
-    </script>
+    <script>appendDummy()</script>
 </body>
 
 </html>
