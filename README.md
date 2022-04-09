@@ -15,13 +15,18 @@ This project may contain bugs and have not being tested at all. Use under your o
 ## Install
 
 > ⚗️  **Experimental**
-
 ```
 npm install master-styles-group
 ```
 
 ```
 yarn add master-styles-group
+```
+
+### CDN
+
+```html
+<script src="https://unpkg.com/master-styles-group"></script>
 ```
 
 ## Setup
