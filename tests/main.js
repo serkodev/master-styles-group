@@ -1,7 +1,9 @@
 import "@master/style";
 import "@master/styles";
 
-var fsize = 20;
+import "../src/index.ts";
+
+var fsize = 13;
 function increaseSize(e) {
     e.classList.remove("{font:" + fsize + "}@xm");
     fsize++;
