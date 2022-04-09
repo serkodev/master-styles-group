@@ -10,5 +10,5 @@
     "indent": [1, 4, { "SwitchCase": 1 }],
     "eol-last": ["warn", "always"]
   },
-  "ignorePatterns": ["dist/**", "node_modules/**"]
+  "ignorePatterns": ["dist/**", "dist-dev/**", "node_modules/**"]
 }
