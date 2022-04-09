@@ -3,11 +3,16 @@ import "@master/styles";
 
 import "../src/index.ts";
 
-var fsize = 13;
+var fsize = 14;
 function increaseSize(e) {
-    e.classList.remove("{font:" + fsize + "}@xm");
-    fsize++;
-    e.classList.add("{font:" + fsize + "}@xm");
+    if (e.classList.contains("{font:" + fsize + ";_f:blue}@xm")) {
+        e.classList.replace(
+            "{font:" + fsize++ + ";_f:blue}@xm",
+            "{font:" + fsize + ";_f:blue}@xm"
+        );
+    } else {
+        e.classList.add("{font:" + fsize + ";_f:blue}@xm");
+    }
 }
 
 function appendDummy() {
