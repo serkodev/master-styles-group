@@ -2,21 +2,21 @@ export type LexResult = { styles: string[], selector: string }
 
 function lex(src: string): LexResult | undefined {
     const len = src.length;
-    let pos = 0;
 
-    const styles: string[] = [];
+    if (src[0] == "{" ) {
+        let pos = 0;
+        const styles: string[] = [];
 
-    const findNext = (charList: string[]): string | undefined => {
-        while (pos < len) {
-            const c = src[pos];
-            if (charList.includes(c)) {
-                return c;
+        const findNext = (charList: string[]): string | undefined => {
+            while (pos < len) {
+                const c = src[pos];
+                if (charList.includes(c)) {
+                    return c;
+                }
+                pos++;
             }
-            pos++;
-        }
-    };
+        };
 
-    if (src[pos] == "{") {
         // start
         pos++;
         let clsPosition = pos;
