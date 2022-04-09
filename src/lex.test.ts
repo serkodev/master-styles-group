@@ -75,6 +75,10 @@ test("lex empty", () => {
         {
             in: "{foo:bar;_bar:foo}",
             out: { styles: ["foo:bar", "bar:foo"], selector: "" }
+        },
+        {
+            in: "{;_font:red}",
+            out: { styles: ["font:red"], selector: "" }
         }
     ].forEach(c => expect(lex(c.in)).toStrictEqual(c.out));
 });

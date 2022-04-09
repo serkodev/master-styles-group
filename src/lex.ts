@@ -42,7 +42,10 @@ function lex(src: string): LexResult | undefined {
                     break;
                 case ";": // test is end class
                     if ((pos + 1 < len) && src[pos + 1] == "_") {
-                        styles.push(src.substring(clsPosition, pos++));
+                        const style = src.substring(clsPosition, pos++);
+                        if (style.length > 0) {
+                            styles.push(style);
+                        }
                         clsPosition = pos + 1;
                     }
                     break;
