@@ -1,4 +1,4 @@
-# master-group
+# master-styles-group
 
 A plugin for [Master Styles](https://github.com/master-co/styles) to group up styles and add selectors.
 
@@ -17,11 +17,11 @@ This project may contain bugs and have not being tested at all. Use under your o
 > ⚗️  **Experimental**
 
 ```
-npm install master-group
+npm install master-styles-group
 ```
 
 ```
-yarn add master-group
+yarn add master-styles-group
 ```
 
 ## Setup

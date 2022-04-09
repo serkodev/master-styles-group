@@ -1,5 +1,5 @@
 {
-  "name": "master-group",
+  "name": "master-styles-group",
   "version": "0.0.1",
   "license": "MIT",
   "author": "SerKo (https://github.com/serkodev)",
@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/serkodev/master-group.git"
+    "url": "https://github.com/serkodev/master-styles-group.git"
   },
-  "homepage": "https://github.com/serkodev/master-group",
+  "homepage": "https://github.com/serkodev/master-styles-group",
   "scripts": {
     "predev": "rm -rf .parcel-cache & rm -rf dist-dev",
     "dev": "parcel tests/index.html --dist-dir dist-dev",
