@@ -44,7 +44,7 @@ import "master-styles-group";
 ### Examples
 
 ```html
-<div class="{m:2;_p:2;4;_f:red}@"></div>
+<div class="{m:2;_p:2;4;_f:red}"></div>
 <!-- equals -->
 <div class="m:2 p:2;4 f:red"></div>
 ```
