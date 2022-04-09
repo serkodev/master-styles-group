@@ -2,38 +2,35 @@ import lex, { LexResult } from "./lex";
 
 const groupStyles = (lexResult: LexResult) => lexResult.styles.map(style => style + lexResult.selector);
 
-const updateStyleClass = (e: Element, oldValue: string | null = null) => {
-    const lexResultMap: { [key: string]: LexResult } = {};
+type lexMap = { [key: string]: LexResult }
+const groupLexCache = new WeakMap();
+
+const updateStyleClass = (e: Element) => {
+    const cache: lexMap = groupLexCache.get(e) || {};
+
+    // loop cache, check if current does not have
+    for (const style in cache) {
+        if (!e.classList.contains(style)) {
+            const styles = groupStyles(cache[style]);
+            delete cache[style];
+            groupLexCache.set(e, cache);
+
+            e.classList.remove(...styles);
+        }
+    }
 
     // lex current class
     e.classList.forEach((c) => {
-        const lexResult = lex(c);
-        if (lexResult !== undefined) {
-            lexResultMap[c] = lexResult;
-        }
-    });
+        if (!cache[c]) {
+            const lexResult = lex(c);
+            if (lexResult !== undefined) {
+                cache[c] = lexResult;
+                groupLexCache.set(e, cache);
 
-    // find old value group class and remove the related class
-    if (oldValue) {
-        oldValue.split(/\s/).forEach((c) => {
-            if (!lexResultMap[c]) {
-                const lexResult = lex(c);
-                if (lexResult !== undefined) {
-                    groupStyles(lexResult).forEach(style => {
-                        e.classList.remove(style);
-                    });
-                }
+                const newStyles = groupStyles(lexResult).filter(style => !e.classList.contains(style));
+                e.classList.add(...newStyles);
             }
-        });
-    }
-
-    // extract group style and add to element
-    // TODO: prevent process same group-style to increase performance
-    Object.values(lexResultMap).forEach(lexResult => {
-        const styles = groupStyles(lexResult);
-        styles.forEach(style => {
-            !e.classList.contains(style) && e.classList.add(style);
-        });
+        }
     });
 };
 
@@ -45,7 +42,7 @@ const observer = new MutationObserver((mutations) => {
                 break;
             case "attributes":
                 if (mutation.target instanceof Element && mutation.attributeName === "class") {
-                    updateStyleClass(mutation.target, mutation.oldValue);
+                    updateStyleClass(mutation.target);
                 }
         }
     });
