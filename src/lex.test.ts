@@ -7,6 +7,10 @@ test("lex end-selector", () => {
             out: { styles: ["font:bass", "asd:sxx"], selector: "_:where(pre,a)" }
         },
         {
+            in: "{p:2;4;_m:8;16}@xs",
+            out: { styles: ["p:2;4", "m:8;16"], selector: "@xs" }
+        },
+        {
             in: "{font:bass;_asd:sxx}@xs",
             out: { styles: ["font:bass", "asd:sxx"], selector: "@xs" }
         },
