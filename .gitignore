@@ -1,3 +1,16 @@
 node_modules
-dist
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Build
 .parcel-cache
+dist
+dist-dev
