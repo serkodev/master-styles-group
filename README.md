@@ -32,7 +32,7 @@ yarn add master-styles-group
 ## Setup
 
 ```js
-import "master-style";
+import "master-styles-group";
 ```
 
 ## Usage
