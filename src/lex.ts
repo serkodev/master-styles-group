@@ -1,10 +1,12 @@
-function lex(src: string): { styles: string[], selector: string } | undefined {
+export type LexResult = { styles: string[], selector: string }
+
+function lex(src: string): LexResult | undefined {
     const len = src.length;
     let pos = 0;
 
     const styles: string[] = [];
 
-    function findNext(charList: string[]): string | undefined {
+    const findNext = (charList: string[]): string | undefined => {
         while (pos < len) {
             const c = src[pos];
             if (charList.includes(c)) {
@@ -12,7 +14,7 @@ function lex(src: string): { styles: string[], selector: string } | undefined {
             }
             pos++;
         }
-    }
+    };
 
     if (src[pos] == "{") {
         // start
