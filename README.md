@@ -39,15 +39,9 @@ import "master-styles-group";
 
 - Use `{}` to group up styles
 - Use `;_` to separate each style
-- Optional put a selector at start or end
+- Put a selector at start or end
 
 ### Examples
-
-```html
-<div class="{m:2;_p:2;4;_f:red}"></div>
-<!-- equals -->
-<div class="m:2 p:2;4 f:red"></div>
-```
 
 ```html
 <div class="{m:2;_p:2;4;_f:red}@xs"></div>
