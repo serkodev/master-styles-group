@@ -1,6 +1,6 @@
 {
   "name": "master-styles-group",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "SerKo (https://github.com/serkodev)",
   "source": "src/index.ts",
