@@ -11,6 +11,7 @@ This project may contain bugs and have not being tested at all. Use under your o
 - Group up master styles
 - Add a [Selector](https://docs.master.co/styles/selectors) / [Breakpoints](https://docs.master.co/styles/breakpoints) / [Media Queries](https://docs.master.co/styles/media-queries), etc. for all styles inside a group in one-line.
 - Support for adding selectors in front of style group
+- Support nested group
 
 ## Install
 
@@ -49,6 +50,20 @@ import "master-styles-group";
 <div class="@xs{m:2;_p:2;4;_f:red}"></div>
 <!-- equals -->
 <div class="m:2@xs p:2;4@xs f:red@xs"></div>
+```
+
+#### Nested Group
+
+```html
+<div class="{{m:2;_p:2;4}@dark;_f:red}@xs"></div>
+<!-- equals -->
+<div class="m:2@xs@dark@xs p:2;4@dark@xs f:red@xs"></div>
+
+
+<!-- Support auto ordering -->
+<div class="{{m:2;_p:2;4}@dark;_f:red}_span"></div>
+<!-- equals -->
+<div class="m:2_span@dark p:2;4_span@dark f:red_span"></div>
 ```
 
 ## License
