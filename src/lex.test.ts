@@ -141,6 +141,30 @@ test("lex nested group", () => {
                 { styles:["foo:bar"], selector: "@xm"},
                 "f:red"
             ], selector: "" }
+        },
+        {
+            in: "{{foo:bar}@xm;_{f:blue;_{f:12}@md}_.foo@print}@dark",
+            out: { styles: [
+                { styles:["foo:bar"], selector: "@xm"},
+                { styles:[
+                    "f:blue",
+                    { styles:["f:12"], selector: "@md"}
+                ], selector: "_.foo@print"}
+            ], selector: "@dark" }
+        },
+        {
+            in: "{{foo:bar}@xm;_{f:blue;_{}}_.foo@print}@dark",
+            out: { styles: [
+                { styles:["foo:bar"], selector: "@xm"},
+                { styles:[
+                    "f:blue",
+                    { styles:[], selector: ""}
+                ], selector: "_.foo@print"}
+            ], selector: "@dark" }
+        },
+        {
+            in: "{{{}}}",
+            out: { styles: [{ styles: [{ styles: [], selector: "" }], selector: "" }], selector: "" }
         }
     ].forEach(c => expect(lex(c.in)).toStrictEqual(c.out));
 });
