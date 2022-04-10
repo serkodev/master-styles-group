@@ -47,7 +47,7 @@ function lex(src: string): LexResult | undefined {
             }
         };
 
-        // selector on the begin
+        // check is front-selector
         if (src[0] != "{" && src[len-1] == "}") {
             const parseFrontSelector = () => {
                 while (pos < len) {
@@ -107,7 +107,7 @@ function lex(src: string): LexResult | undefined {
                         return { styles, selector: selector || src.substring(pos) };
                     case "{": // nested group
                         let nestSelector = "";
-                        if (pos != clsPos) { // {@sel{foo:bar}}
+                        if (pos != clsPos) { // check is front-selector {@sel{foo:bar}}
                             nestSelector = src.substring(clsPos, pos);
                         }
                         pos++;
