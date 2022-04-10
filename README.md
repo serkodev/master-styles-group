@@ -15,7 +15,10 @@ This project may contain bugs and have not being tested at all. Use under your o
 
 ## Install
 
-> ⚗️  **Experimental**
+Before starting, make sure you have [Master Styles](https://docs.master.co/styles/setup) installed.
+
+> ⚗️ **Experimental**
+
 ```
 npm install master-styles-group
 ```
@@ -58,7 +61,6 @@ import "master-styles-group";
 <div class="{{m:2;_p:2;4}@dark;_f:red}@xs"></div>
 <!-- equals -->
 <div class="m:2@xs@dark@xs p:2;4@dark@xs f:red@xs"></div>
-
 
 <!-- Support auto ordering -->
 <div class="{{m:2;_p:2;4}@dark;_f:red}_span"></div>
