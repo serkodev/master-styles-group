@@ -1,6 +1,5 @@
 import lex, { LexResult } from "./style-lexer";
-
-const groupStyles = (lexResult: LexResult) => lexResult.styles.map(style => style + lexResult.selector);
+import generate from "./generate";
 
 type lexMap = { [key: string]: LexResult }
 const groupLexCache = new WeakMap();
@@ -11,7 +10,7 @@ const updateStyleClass = (e: Element) => {
     // loop cache, check if current does not have
     for (const style in cache) {
         if (!e.classList.contains(style)) {
-            const styles = groupStyles(cache[style]);
+            const styles = generate(cache[style]);
             delete cache[style];
             groupLexCache.set(e, cache);
 
@@ -27,7 +26,7 @@ const updateStyleClass = (e: Element) => {
                 cache[c] = lexResult;
                 groupLexCache.set(e, cache);
 
-                const newStyles = groupStyles(lexResult).filter(style => !e.classList.contains(style));
+                const newStyles = generate(lexResult).filter(style => !e.classList.contains(style));
                 e.classList.add(...newStyles);
             }
         }
