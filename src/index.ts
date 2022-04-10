@@ -1,4 +1,4 @@
-import lex, { LexResult } from "./lex";
+import lex, { LexResult } from "./style-lexer";
 
 const groupStyles = (lexResult: LexResult) => lexResult.styles.map(style => style + lexResult.selector);
 

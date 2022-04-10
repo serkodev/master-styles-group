@@ -1,4 +1,4 @@
-import lex from "./lex";
+import lex from "./style-lexer";
 
 test("lex end-selector", () => {
     [
