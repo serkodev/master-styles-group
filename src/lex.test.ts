@@ -119,3 +119,44 @@ test("lex empty", () => {
         }
     ].forEach(c => expect(lex(c.in)).toStrictEqual(c.out));
 });
+
+test("lex nested group", () => {
+    [
+        {
+            in: "{@xm{foo:bar;_f:red;_@dark{f:blue}};_f:red}",
+            out: { styles: [
+                { styles:[
+                    "foo:bar",
+                    "f:red",
+                    { styles:[
+                        "f:blue"
+                    ], selector: "@dark"},
+                ], selector: "@xm"},
+                "f:red"
+            ], selector: "" }
+        },
+        {
+            in: "{{foo:bar}@xm;_f:red}",
+            out: { styles: [
+                { styles:["foo:bar"], selector: "@xm"},
+                "f:red"
+            ], selector: "" }
+        },
+        // {
+        //     in: "{{foo:bar}@xm}",
+        //     out: { styles: [
+        //         "content:'foo;_bar'",
+        //         "foo:bar",
+        //         { styles: "foo:bar", selector: "@xm"}
+        //     ], selector: "" }
+        // },
+        // {
+        //     in: "{content:'foo;_bar';_@xm{foo:bar}}",
+        //     out: { styles: [
+        //         "content:'foo;_bar'",
+        //         "foo:bar",
+        //         { styles: "foo:bar", selector: "@xm"}
+        //     ], selector: "" }
+        // }
+    ].forEach(c => expect(lex(c.in)).toStrictEqual(c.out));
+});
