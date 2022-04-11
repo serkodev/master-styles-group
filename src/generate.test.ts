@@ -33,5 +33,5 @@ test("generate", () => {
             in: "{p:2;4@dark}_span",
             out: "p:2;4_span@dark"
         }
-    ].forEach(c => expect(generate(lex(c.in)!)).toStrictEqual(c.out.split(" ")));
+    ].forEach(c => expect(generate(lex(c.in)!)).toStrictEqual(c.out.split(/\s/).filter(s => !!s)));
 });
