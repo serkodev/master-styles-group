@@ -1,12 +1,12 @@
 import Lexer from "./lexer";
 
-export type LexSuffix = {
+export type atResult = {
     selector: string,
-    atSelector: string, // need put at the end
+    at: string, // need put at the end
 }
 
 class SelectorLexer extends Lexer {
-    lex(): LexSuffix | undefined {
+    lex(): atResult | undefined {
         // contains @ selector but not at the start
         while (this.pos < this.len) {
             switch (this.findNext(["'", "@"])) {
@@ -18,7 +18,7 @@ class SelectorLexer extends Lexer {
                 case "@":
                     return {
                         selector: this.src.substring(0, this.pos),
-                        atSelector: this.src.substring(this.pos),
+                        at: this.src.substring(this.pos),
                     };
                 default:
                     this.pos++;
@@ -27,14 +27,21 @@ class SelectorLexer extends Lexer {
     }
 }
 
-function lex(src: string): LexSuffix {
+export function lexSelector(src: string): atResult {
     if (src[0] == "@") {
-        return { selector: "", atSelector: src};
+        return { selector: "", at: src};
     } else if (!src.includes("@")) {
-        return { selector: src, atSelector: ""};
+        return { selector: src, at: ""};
     }
     const l = new SelectorLexer(src);
-    return l.lex() || { selector: src, atSelector: ""};
+    return l.lex() || { selector: src, at: ""};
 }
 
-export default lex;
+export function lexStyle(src: string): { style: string, at: string } {
+    if (src[0] == "@" || !src.includes("@")) { // animation
+        return { style: src, at: "" };
+    }
+
+    const l = new SelectorLexer(src).lex();
+    return l ? { style: l.selector, at: l.at } : { style: src, at: "" };
+}

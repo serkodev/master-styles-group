@@ -25,5 +25,13 @@ test("generate", () => {
             in: "{{m:2;_p:2;4}@dark;_f:red}_span",
             out: "m:2_span@dark p:2;4_span@dark f:red_span"
         },
+        {
+            in: "{{{m:2;_p:2;4}@dark;_@fade;1s;ease}_span}",
+            out: "m:2_span@dark p:2;4_span@dark @fade;1s;ease_span"
+        },
+        {
+            in: "{p:2;4@dark}_span",
+            out: "p:2;4_span@dark"
+        }
     ].forEach(c => expect(generate(lex(c.in)!)).toStrictEqual(c.out.split(" ")));
 });
