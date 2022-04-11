@@ -66,6 +66,10 @@ import "master-styles-group";
 <div class="{{m:2;_p:2;4}@dark;_f:red}_span"></div>
 <!-- equals -->
 <div class="m:2_span@dark p:2;4_span@dark f:red_span"></div>
+
+<div class="{m:2@dark;_f:red}_span"></div>
+<!-- equals -->
+<div class="m:2_span@dark f:red_span"></div>
 ```
 
 ## License
